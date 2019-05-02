@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lista de cidades</title>
+    <title>Lista de ufs</title>
 </head>
 <body>
     <h1>Lista de UFs</h1>
-    <table>
+    <table border="1">
         <thead>
             <tr>
-                <td align="center">Id</td>
-                <td align="center">Nome</td>
-                <td align="center">UF</td>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>UF</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <for|uf| of=list>
-                    <td>{uf.id}</td>
-                    <td>{uf.nome}</td>
-                    <td>{uf.sigla}</td>
+                <for|uf| in=list>
+                    <td>${uf.id}</td>
+                    <td>${uf.nome}</td>
+                    <td>${uf.sigla}</td>
                 </for>
             </tr>
         </tbody>

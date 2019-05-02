@@ -9,32 +9,39 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_loadTag = marko_helpers.t,
     component_globals_tag = marko_loadTag(require("marko/src/core-tags/components/component-globals-tag")),
-    marko_forEach = marko_helpers.f,
+    marko_forEachProp = require("marko/src/runtime/helper-forEachProperty"),
+    marko_escapeXml = marko_helpers.x,
     init_components_tag = marko_loadTag(require("marko/src/core-tags/components/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/core-tags/core/await/reorderer-renderer"));
 
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"><title>Lista de cidades</title></head><body>");
+  out.w("<!DOCTYPE html><html lang=\"en\"><head><title>Lista de ufs</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Lista de UFs</h1><table><thead><tr><td align=\"center\">Id</td><td align=\"center\">Nome</td><td align=\"center\">UF</td></tr></thead><tbody><tr>");
+  out.w("<h1>Lista de UFs</h1><table border=\"1\"><thead><tr><td>Id</td><td>Nome</td><td>UF</td></tr></thead><tbody><tr>");
 
-  var for__16 = 0;
+  var for__13 = 0;
 
-  marko_forEach(list, function(uf) {
-    var keyscope__17 = "[" + ((for__16++) + "]");
+  marko_forEachProp(list, function(uf) {
+    var keyscope__14 = "[" + ((for__13++) + "]");
 
-    out.w("<td>{uf.id}</td><td>{uf.nome}</td><td>{uf.sigla}</td>");
+    out.w("<td>" +
+      marko_escapeXml(uf.id) +
+      "</td><td>" +
+      marko_escapeXml(uf.nome) +
+      "</td><td>" +
+      marko_escapeXml(uf.sigla) +
+      "</td>");
   });
 
   out.w("</tr></tbody></table>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "21");
+  await_reorderer_tag({}, out, __component, "18");
 
   out.w("</body></html>");
 }
